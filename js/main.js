@@ -63,6 +63,8 @@ var categorias = {
     elementos: ["pasajes", "dulces", "ropa", "comida_calle", "otros_gastos"],
   },
 };
+var urlget = "https://desarrolladorweb.site/api-gastos/";
+var urlsave = "https://desarrolladorweb.site/api-gastos/new_entry";
 var ingreso = 4500;
 $(document).ready(async function () {
   // OBTENER FECHA ACTUAL DE SISTEMA
@@ -138,7 +140,7 @@ $(document).ready(async function () {
 // OBTENER GASTOS POR CATEGORIA
 // **************************************
 const getGastosPorCategorias = async (categorias) => {
-  let urlsave = "http://localhost:5000/";
+  let urlsave = "https://desarrolladorweb.site/api-gastos/";
   let response = await obtenerDatos(urlsave);
   let rango = obtenerRangoFechas("mensual");
 
@@ -260,7 +262,7 @@ const filtradoPorFecha = (datos, fecha_inicio, fecha_fin) => {
 // ACTUALIZAR EL GASTO MENSUAL
 // **************************************
 const actualizarGastoMensual = async (ingreso) => {
-  let urlsave = "http://localhost:5000/";
+  let urlsave = "https://desarrolladorweb.site/api-gastos/";
   let response = await obtenerDatos(urlsave);
   //OBTENER EL RANGO DE FECHAS
   let rango = obtenerRangoFechas("mensual");
@@ -366,7 +368,7 @@ $("#guardar_gasto").on("click", async () => {
 
   //ENVIAR AL SERVIDOR
   var jsonData = JSON.stringify(gasto, null, 2);
-  var urlsave = "http://localhost:5000/new_entry";
+  var urlsave = "https://desarrolladorweb.site/api-gastos/new_entry";
   var responseSave = await guardarDatos(urlsave, jsonData);
   if (responseSave == "Gasto guardado correctamente.") {
     await actualizarGastoMensual(ingreso);
