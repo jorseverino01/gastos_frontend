@@ -1,0 +1,309 @@
+{
+  "1": {
+    "nombre": "Pasaje",
+    "unidad": "u",
+    "precio_relativo": 4,
+    "precio_plan_mensual": 105,
+    "mejor_lugar_compra": "NA",
+    "duracion_estimada": "1 Dia",
+    "tipo_gasto": "semanal"
+  },
+  "2": {
+    "nombre": "Café",
+    "unidad": "u",
+    "precio_relativo": 8.50,
+    "precio_plan_mensual": 17,
+    "mejor_lugar_compra": "Tienda frentea al condominio",
+    "duracion_estimada": "2 semanas por bolsa",
+    "tipo_gasto": "semanal"
+  },
+  "3": {
+    "nombre": "Azucar",
+    "unidad": "Kg",
+    "precio_relativo": 4,
+    "precio_plan_mensual": 8,
+    "mejor_lugar_compra": "Tienda frentea al condominio",
+    "duracion_estimada": "2 semanas por Kilo",
+    "tipo_gasto": "semanal"
+  },
+  "4": {
+    "nombre": "Pan",
+    "unidad": "u",
+    "precio_relativo": 2.4,
+    "precio_plan_mensual": 72,
+    "mejor_lugar_compra": "Panadería al costado de Inkafarna",
+    "duracion_estimada": "1 Día",
+    "tipo_gasto": "semanal"
+  },
+  "5": {
+    "nombre": "Higado",
+    "unidad": "Kg",
+    "precio_relativo": 6,
+    "precio_plan_mensual": 24,
+    "mejor_lugar_compra": "Mercado valdiviezo",
+    "duracion_estimada": "1 semana por 1 kilo",
+    "tipo_gasto": "semanal"
+  },
+  "6": {
+    "nombre": "Huevos",
+    "unidad": "Kg",
+    "precio_relativo": 9,
+    "precio_plan_mensual": 72,
+    "mejor_lugar_compra": "Mercado valdiviezo",
+    "duracion_estimada": "1 semana por 2kg",
+    "tipo_gasto": "semanal"
+  },
+  "7": {
+    "nombre": "Shampoo",
+    "unidad": "u",
+    "precio_relativo": 17.5,
+    "precio_plan_mensual": 8.75,
+    "mejor_lugar_compra": "Minimarket valdiviezo",
+    "duracion_estimada": "2 Meses por botella",
+    "tipo_gasto": "semanal"
+  },
+  "8": {
+    "nombre": "Acondicionador",
+    "unidad": "u",
+    "precio_relativo": 40,
+    "precio_plan_mensual": 13.33,
+    "mejor_lugar_compra": "Por verificar",
+    "duracion_estimada": "2 Meses por botella",
+    "tipo_gasto": "semanal"
+  },
+  "9": {
+    "nombre": "Cepillo",
+    "unidad": "u",
+    "precio_relativo": 21.5,
+    "precio_plan_mensual": 10.75,
+    "mejor_lugar_compra": "Tottus",
+    "duracion_estimada": "2 Meses por Pack de 2",
+    "tipo_gasto": "semanal"
+  },
+  "10": {
+    "nombre": "Colinos",
+    "unidad": "u",
+    "precio_relativo": 18.75,
+    "precio_plan_mensual": 18.75,
+    "mejor_lugar_compra": "Tottus",
+    "duracion_estimada": "1 Mes por pack de 2",
+    "tipo_gasto": "semanal"
+  },
+  "11": {
+    "nombre": "Dog chow",
+    "unidad": "Kg",
+    "precio_relativo": 97.9,
+    "precio_plan_mensual": 48.75,
+    "mejor_lugar_compra": "Tottus",
+    "duracion_estimada": "2 Meses por bolsa de 8kg",
+    "tipo_gasto": "semanal"
+  },
+  "12": {
+    "nombre": "Jabón Tocador",
+    "unidad": "u",
+    "precio_relativo": 17.5,
+    "precio_plan_mensual": 17.5,
+    "mejor_lugar_compra": "Minimarket valdiviezo",
+    "duracion_estimada": "1 Mes por 3 unidades",
+    "tipo_gasto": "semanal"
+  },
+  "13": {
+    "nombre": "Papel Higiénico",
+    "unidad": "u",
+    "precio_relativo": 33.90,
+    "precio_plan_mensual": 16.95,
+    "mejor_lugar_compra": "Maestro",
+    "duracion_estimada": "2 Meses por Bolsa (16 unidades)",
+    "tipo_gasto": "semanal"
+  },
+  "14": {
+    "nombre": "Bolsas",
+    "unidad": "u",
+    "precio_relativo": 4,
+    "precio_plan_mensual": 4,
+    "mejor_lugar_compra": "Mercado valdiviezo",
+    "duracion_estimada": "1 Mes por bolsas",
+    "tipo_gasto": "semanal"
+  },
+  "15": {
+    "nombre": "Rasurador",
+    "unidad": "u",
+    "precio_relativo": 19.7,
+    "precio_plan_mensual": 6.60,
+    "mejor_lugar_compra": "Por verificar",
+    "duracion_estimada": "3 Mes pack de 3 unidades",
+    "tipo_gasto": "semanal"
+  },
+  "16": {
+    "nombre": "Crema de peinar",
+    "unidad": "u",
+    "precio_relativo": 5,
+    "precio_plan_mensual": 5,
+    "mejor_lugar_compra": "Farmacia nogales (Agente interbank)",
+    "duracion_estimada": "2 Meses por bolsa de 8kg",
+    "tipo_gasto": "semanal"
+  },
+  "17": {
+    "nombre": "Limpiatodo",
+    "unidad": "Litro",
+    "precio_relativo": 15.90,
+    "precio_plan_mensual": 15.90,
+    "mejor_lugar_compra": "Tottus",
+    "duracion_estimada": "1 Mes por botella 5 Litros",
+    "tipo_gasto": "semanal"
+  },
+  "18": {
+    "nombre": "Lejía",
+    "unidad": "Litro",
+    "precio_relativo": 10.90,
+    "precio_plan_mensual": 10.90,
+    "mejor_lugar_compra": "Tottus",
+    "duracion_estimada": "1 Mes por botella 5 Litros",
+    "tipo_gasto": "semanal"
+  },
+  "19": {
+    "nombre": "Enjuague bucal",
+    "unidad": "u",
+    "precio_relativo": 23.90,
+    "precio_plan_mensual": 23.90,
+    "mejor_lugar_compra": "Tottus",
+    "duracion_estimada": "1 Mes por botella 500 ml",
+    "tipo_gasto": "semanal"
+  },
+  "20": {
+    "nombre": "Detergente",
+    "unidad": "Kg",
+    "precio_relativo": 40.60,
+    "precio_plan_mensual": 20.30,
+    "mejor_lugar_compra": "Tottus",
+    "duracion_estimada": "2 Mes por 4kg Opal",
+    "tipo_gasto": "semanal"
+  },
+  "22": {
+    "nombre": "Comida",
+    "unidad": "u",
+    "precio_relativo": 200,
+    "precio_plan_mensual": 200,
+    "mejor_lugar_compra": "Casa mamá",
+    "duracion_estimada": "Mensual",
+    "tipo_gasto": "servicio"
+  },
+  "23": {
+    "nombre": "Luz y agua valdiviezo",
+    "unidad": "u",
+    "precio_relativo": 82.50,
+    "precio_plan_mensual": 82.50,
+    "mejor_lugar_compra": "Casa mamá",
+    "duracion_estimada": "Mensual",
+    "tipo_gasto": "servicio"
+  },
+  "24": {
+    "nombre": "Internet Valdiviezo",
+    "unidad": "u",
+    "precio_relativo": 50,
+    "precio_plan_mensual": 50,
+    "mejor_lugar_compra": "Casa mamá",
+    "duracion_estimada": "Mensual",
+    "tipo_gasto": "servicio"
+  },
+  "25": {
+    "nombre": "Luz departamento",
+    "unidad": "u",
+    "precio_relativo": 40,
+    "precio_plan_mensual": 40,
+    "mejor_lugar_compra": "Casa",
+    "duracion_estimada": "Mensual",
+    "tipo_gasto": "servicio"
+  },
+  "26": {
+    "nombre": "Internet departamento",
+    "unidad": "u",
+    "precio_relativo": 65,
+    "precio_plan_mensual": 65,
+    "mejor_lugar_compra": "Casa",
+    "duracion_estimada": "Mensual",
+    "tipo_gasto": "servicio"
+  },
+  "27": {
+    "nombre": "Mantenimiento",
+    "unidad": "u",
+    "precio_relativo": 100,
+    "precio_plan_mensual": 100,
+    "mejor_lugar_compra": "Casa",
+    "duracion_estimada": "Mensual",
+    "tipo_gasto": "servicio"
+  },
+  "28": {
+    "nombre": "Plan celular",
+    "unidad": "u",
+    "precio_relativo": 45,
+    "precio_plan_mensual": 45,
+    "mejor_lugar_compra": "Casa",
+    "duracion_estimada": "Mensual",
+    "tipo_gasto": "servicio"
+  },
+  "29": {
+    "nombre": "Gas calidda",
+    "unidad": "u",
+    "precio_relativo": 20,
+    "precio_plan_mensual": 20,
+    "mejor_lugar_compra": "Casa",
+    "duracion_estimada": "Mensual",
+    "tipo_gasto": "servicio"
+  },
+  "30": {
+    "nombre": "Desayuno",
+    "unidad": "u",
+    "precio_relativo": 0,
+    "precio_plan_mensual": 0,
+    "mejor_lugar_compra": "",
+    "duracion_estimada": "",
+    "tipo_gasto": "extra"
+  },
+  "31": {
+    "nombre": "Golosinas",
+    "unidad": "u",
+    "precio_relativo": 0,
+    "precio_plan_mensual": 0,
+    "mejor_lugar_compra": "",
+    "duracion_estimada": "",
+    "tipo_gasto": "extra"
+  },
+  "32": {
+    "nombre": "Comida en la calle",
+    "unidad": "u",
+    "precio_relativo": 0,
+    "precio_plan_mensual": 0,
+    "mejor_lugar_compra": "",
+    "duracion_estimada": "",
+    "tipo_gasto": "extra"
+  },
+  "33": {
+    "nombre": "Fiesta",
+    "unidad": "u",
+    "precio_relativo": 0,
+    "precio_plan_mensual": 0,
+    "mejor_lugar_compra": "",
+    "duracion_estimada": "",
+    "tipo_gasto": "extra"
+  },
+  "34": {
+    "nombre": "Ropa",
+    "unidad": "u",
+    "precio_relativo": 0,
+    "precio_plan_mensual": 0,
+    "mejor_lugar_compra": "",
+    "duracion_estimada": "",
+    "tipo_gasto": "extra"
+  },
+  "35": {
+    "nombre": "Otros",
+    "unidad": "u",
+    "precio_relativo": 0,
+    "precio_plan_mensual": 0,
+    "mejor_lugar_compra": "",
+    "duracion_estimada": "",
+    "tipo_gasto": "extra"
+  }
+  
+}

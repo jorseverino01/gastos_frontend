@@ -1,0 +1,248 @@
+.btn_agergarGasto {
+    width: 60px;
+    height: 60px;
+    font-size: 40px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    vertical-align: middle;
+    padding-bottom: 10px;
+    position: fixed;
+    right: 0;
+    top: 40%;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    background-color: #fff;
+    cursor: pointer;
+}
+.btn_agergarGasto>span {
+    height: fit-content;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+}
+.colorfondo_general {
+    background-color: #E3E8EB;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+.colorfondo_azul {
+    background-color: #2861CA;
+}
+.cabacera {
+    color: #fff;
+    padding: 10px;
+    font-size: 10px;
+    height: 200px;
+}
+.cabacera > div {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+.cabacera > div > select {
+    width: 30%;
+    margin: 5px;
+}
+.cabacera h1 {
+    font-size: 20px;
+}
+.box_seccionPrincipal {
+    background-color: #fff;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    align-content: center;
+    flex-direction: column;
+    padding-top: 30px;
+    padding-bottom: 30px;
+    padding-right: 20px;
+    padding-left: 20px;
+}
+.box_seccionPrincipal .gastoSemanal {
+    color: #2861CA;
+    font-size: 40px;
+}
+.descripcion_gasto {
+    font-size: 12px;
+    color: gray;
+}
+.box_gastoSemanal {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    flex-direction: column;
+}
+.box_gastosOtros {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+.box_gastosOtros > div {
+    width: 50%;
+}
+.box_otroGasto {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.otroGasto {
+    color: #000;
+    font-size: 30px;
+}
+.borde_separador {
+    border-top: 1px solid #e6e6e6;
+    width: 100%;
+}
+.space_20 {
+    height: 20px;
+}
+
+
+
+.chart-container {
+    width: 100%;
+    height: 400px;
+    overflow-y: scroll;
+}
+.bar {
+    fill: steelblue;
+}
+.bar:hover {
+    fill: orange;
+}
+.axis-label {
+    font: 10px sans-serif;
+}
+text {
+    color: #000;
+}
+.row_comparativo {
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: column;
+    width: 95%;
+}
+.subtexto_3 {
+    font-size: 12px;
+    color: #000;
+}
+.flex_centrado {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.flex_start {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+}
+.total_width {
+    width: 100%;
+}
+.grafico_barra {
+    height: 20px;
+    color:#000;
+    box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.3), 
+                -5px -5px 15px rgba(255, 255, 255, 0.7);
+    border-radius: 10px; /* Opcional: para bordes redondeados */
+}
+.row_comparativo_gastos {
+    height: 200px;
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+    flex: 1;
+    margin-top: 160px;
+}
+.mc_2 {
+    margin: 0.5rem;
+}
+.sm_b {margin-bottom: 0rem;}
+.sm_t {margin-top: 0rem;}
+
+
+
+
+/* PROGRESS BAR */
+
+progress {
+	width: 100%;
+	margin: 3% auto;
+	display: block;
+	-webkit-appearance: none;
+	border: none;
+}
+
+progress::-webkit-progress-bar {
+	background: RGB(236,236,236);
+	border-radius: 50px;
+	box-shadow: 0 1px 0px 0 rgba(255, 255, 255, 0.2);
+}
+
+progress::-webkit-progress-value {
+	border-radius: 50px;
+	background: rgb(241,130,15);	
+
+}
+
+.barraGastos {
+    float:left;
+    width:60%;
+    height:100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.descripcionGasto {
+    text-align: left;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size:1.1vw;
+    float:left;
+    width:20%;
+    height:100%;
+    margin-left: 1%;
+    margin-right: 1%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-content: center;
+    padding: 10px;
+}
+.valorPlanificado {
+    float:left;
+    width:18%;
+    height:100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.descripcionGasto .categoriaGasto {
+    font-size: 2.5em;
+}
+.descripcionGasto .totalPlanificado {
+    font-size: 2em;
+}
+
+
+.contGraficoRanking {
+    text-align: center;
+    color: red;
+    background-color: white;
+    width:100%;  
+}
+
+.contFilaGrafico{
+    width:100%;
+    height: 50px;
+    display: block;
+    margin: 4% 0;
+    padding: 10px;
+}
+
