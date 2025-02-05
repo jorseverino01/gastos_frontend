@@ -63,10 +63,10 @@ var categorias = {
     elementos: ["pasajes", "dulces", "ropa", "comida_calle", "otros_gastos"],
   },
 };
-// var urlget = "https://desarrolladorweb.site/api-gastos/";
-// var urlsaveapi = "https://desarrolladorweb.site/api-gastos/new_entry";
-var urlget = "http://localhost:5000";
-var urlsaveapi = "http://localhost:5000/new_entry";
+var urlget = "https://desarrolladorweb.site/api-gastos/";
+var urlsaveapi = "https://desarrolladorweb.site/api-gastos/new_entry";
+// var urlget = "http://localhost:5000";
+// var urlsaveapi = "http://localhost:5000/new_entry";
 var ingreso = 4500;
 $(document).ready(async function () {
   // OBTENER FECHA ACTUAL DE SISTEMA
