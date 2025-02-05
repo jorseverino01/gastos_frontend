@@ -374,6 +374,7 @@ $("#guardar_gasto").on("click", async () => {
   var responseSave = await guardarDatos(urlsave, jsonData);
   if (responseSave == "Gasto guardado correctamente.") {
     await actualizarGastoMensual(ingreso);
+    await getGastosPorCategorias(categorias);
   }
 });
 
