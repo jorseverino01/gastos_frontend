@@ -159,6 +159,7 @@
         </svg>
       </div>
       <div class="box_seccionPrincipal">
+        <!-- AHORRO MENSUAL -->
         <div class="box_gastoSemanal">
           <span class="descripcion_gasto">Ahorro Mensual</span>
           <span id="ahorroMensual" class="gastoSemanal"></span>
@@ -168,10 +169,12 @@
         <div class="borde_separador"></div>
         <div class="space_20"></div>
         <div class="box_gastosOtros">
+          <!-- GASTO MENSUAL -->
           <div class="box_otroGasto">
             <span id="gastoMensual" class="otroGasto"></span>
             <span class="descripcion_gasto">Gasto Mensual</span>
           </div>
+          <!-- OTROS GASTOS -->
           <div class="box_otroGasto">
             <span id="otroGasto" class="otroGasto"></span>
             <span class="descripcion_gasto">Otros Gastos</span>
@@ -182,7 +185,73 @@
     <div id="row_comparativo_gastos" class="row_comparativo_gastos d-none">
       <!-- Se agregarn por js las mercaderias -->
     </div>
-    <section style="margin-top: 100px" id="totalGastosPorCategoria"></section>
+    <section class="contentDetalleGastos">
+      <!-- MENU -->
+      <div class="row_menu">
+        <button class="btn_menu activo">Categorias</button>
+        <button class="btn_menu">Resumen</button>
+      </div>
+
+      <div id="vistasGastos">
+        <!-- DETALLE DE GASTOS -->
+        <div
+          id="totalGastosPorCategoria"
+          class="totalGastosPorCategoria vista"
+        ></div>
+        <!-- RESUMEN DE GASTOS -->
+        <div id="totalGastosResumen" class="totalGastosResumen vista d-none">
+          <table class="table table-striped table-bordered table-hover">
+            <thead class="table-dark">
+              <tr>
+                <th>Categoria</th>
+                <th>Real</th>
+                <th>Plan</th>
+                <th>Diferencia</th>
+              </tr>
+            </thead>
+            <tbody id="detalleTablaCategoria">
+              <tr>
+                <td>Juan</td>
+                <td>25</td>
+                <td>Madrid</td>
+                <td>Madrid</td>
+              </tr>
+              <tr>
+                <td>Ana</td>
+                <td>30</td>
+                <td>Barcelona</td>
+                <td>Barcelona</td>
+              </tr>
+              <tr>
+                <td>Carlos</td>
+                <td>28</td>
+                <td>Valencia</td>
+                <td>Valencia</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <table class="table table-striped table-bordered table-hover">
+            <thead class="table-dark">
+              <tr>
+                <th>T. categoria</th>
+                <th>T. Real</th>
+                <th>T. Plan</th>
+                <th>T. Diferencia</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>TOTAL</td>
+                <td id="total_real"></td>
+                <td id="total_plan"></td>
+                <td id="total_diferencia"></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
 
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"

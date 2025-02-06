@@ -22,17 +22,26 @@
     align-items: center;
     align-content: center;
 }
-.colorfondo_general {
+/* .colorfondo_general {
     background-color: #E3E8EB;
     display: flex;
     flex-direction: column;
     height: 100vh;
+} */
+.colorfondo_general {
+    background-color: #dbe7f6;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
 }
-.colorfondo_azul {
+/* .colorfondo_azul {
     background-color: #2861CA;
+} */
+.colorfondo_azul {
+    background-color: #dbe7f6;
 }
 .cabacera {
-    color: #fff;
+    color: #000;
     padding: 10px;
     font-size: 10px;
     height: 200px;
@@ -43,8 +52,12 @@
     align-items: center;
 }
 .cabacera > div > select {
-    width: 30%;
+    width: 20%;
     margin: 5px;
+    /* box shadow */
+    box-shadow: 0px 0px 8px 0px rgba(13,52, 107, 0.19);
+    -webkit-box-shadow: 0px 0px 8px 0px rgba(13,52, 107, 0.19);
+    -moz-box-shadow: 0px 0px 8px 0px rgba(13,52, 107, 0.19);
 }
 .cabacera h1 {
     font-size: 20px;
@@ -61,6 +74,10 @@
     padding-bottom: 30px;
     padding-right: 20px;
     padding-left: 20px;
+    /* box shadow */
+    box-shadow: 0px 0px 8px 0px rgba(13,52, 107, 0.19);
+    -webkit-box-shadow: 0px 0px 8px 0px rgba(13,52, 107, 0.19);
+    -moz-box-shadow: 0px 0px 8px 0px rgba(13,52, 107, 0.19);
 }
 .box_seccionPrincipal .gastoSemanal {
     color: #2861CA;
@@ -167,6 +184,25 @@ text {
 .sm_b {margin-bottom: 0rem;}
 .sm_t {margin-top: 0rem;}
 
+.row_menu {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+.row_menu > button {
+    width: 50%;
+}
+.btn_menu {
+    background-color: #fff;
+    border: 0px;
+    padding: 10px;
+    font-size: 15px;
+    font-weight: 700;
+    cursor: pointer;
+}
+.btn_menu.activo {
+    color: #2861CA;
+}
 
 
 
@@ -236,7 +272,11 @@ progress::-webkit-progress-value {
     text-align: center;
     color: #2861CA;
     background-color: white;
-    width:100%;  
+    width:100%;
+    /* box shadow */
+    box-shadow: 0px 0px 8px 0px rgba(13,52, 107, 0.19);
+    -webkit-box-shadow: 0px 0px 8px 0px rgba(13,52, 107, 0.19);
+    -moz-box-shadow: 0px 0px 8px 0px rgba(13,52, 107, 0.19);
 }
 
 .contFilaGrafico{
@@ -246,4 +286,8 @@ progress::-webkit-progress-value {
     margin: 4% 0;
     padding: 10px;
 }
-
+.contentDetalleGastos {
+    margin-top: 100px;
+    padding: 10px;
+    padding-top: 20px;
+}

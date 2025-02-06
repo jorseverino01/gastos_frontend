@@ -111,6 +111,20 @@ $(document).ready(async function () {
     $("#listarSubcategorias").html(html);
   });
 
+  $(".btn_menu").on("click", function () {
+    $(".btn_menu").removeClass("activo");
+    $(this).addClass("activo");
+    $("#vistasGastos .vista").addClass("d-none");
+    switch ($(this).text()) {
+      case "Categorias":
+        $("#totalGastosPorCategoria").removeClass("d-none");
+        break;
+      case "Resumen":
+        $("#totalGastosResumen").removeClass("d-none");
+        break;
+    }
+  });
+
   // DETECTAR SI SE MODIFICÓ EL MES O EL ANIO DE ANALISIS
   $("#mes_analisis").change(function () {
     let mes = $(this).val();
@@ -160,6 +174,7 @@ const getGastosPorCategorias = async (categorias) => {
 
   // Mostrar los gastos en la pantalla
   mostrarGastosPantalla(resultTotalesPorCategoria);
+  mostrarResumenGastosPantalla(resultTotalesPorCategoria);
 
   // Actualizar indicador principal OTROS GASTOS
   let categoriaOtrosGastos = resultTotalesPorCategoria.filter(
@@ -194,7 +209,35 @@ const mostrarGastosPantalla = (datos) => {
   $("#totalGastosPorCategoria").empty();
   $("#totalGastosPorCategoria").html(html);
 };
+const mostrarResumenGastosPantalla = (datos) => {
+  let html = ``;
+  let diferencia = 0;
 
+  let totalReal = 0;
+  let totalPLan = 0;
+
+  datos.map((elem) => {
+    diferencia = parseFloat(elem.totalPlan) - parseFloat(elem.totalReal);
+    html += `
+          <tr>
+            <td>${elem.categoria}</td>
+            <td>${elem.totalReal}</td>
+            <td>${elem.totalPlan}</td>
+            <td>${diferencia.toFixed(2)}</td>
+          </tr>
+        `;
+
+    totalReal += elem.totalReal;
+    totalPLan += elem.totalPlan;
+  });
+
+  $("#detalleTablaCategoria").empty();
+  $("#detalleTablaCategoria").html(html);
+
+  $("#total_real").html(totalReal);
+  $("#total_plan").html(totalPLan);
+  $("#total_diferencia").html((totalPLan - totalReal).toFixed(2));
+};
 // **************************************
 // OBTENER GASTOS TOTALES POR CATEGORIA
 // **************************************
