@@ -65,9 +65,14 @@ var categorias = {
 };
 var urlget = "https://desarrolladorweb.site/api-gastos/";
 var urlsaveapi = "https://desarrolladorweb.site/api-gastos/new_entry";
+var urlsaveapi = "https://desarrolladorweb.site/api-gastos/delete_id";
 // var urlget = "http://localhost:5000";
 // var urlsaveapi = "http://localhost:5000/new_entry";
+// var urldeleteapi = "http://localhost:5000/delete_id";
+
 var ingreso = 4500;
+var registroPorEliminado = "";
+
 $(document).ready(async function () {
   // OBTENER FECHA ACTUAL DE SISTEMA
   let fechaActual = new Date();
@@ -76,9 +81,9 @@ $(document).ready(async function () {
   let anio = fechaActual.getFullYear();
 
   // => Formatear la fecha en formato mm/dd/yyyy
-  let fechaFormateada = mes + "/" + dia + "/" + anio;
+  let fechaFormateada = dia + "/" + mes + "/" + anio;
   $("#datepicker").datepicker({
-    format: "mm/dd/yyyy",
+    format: "dd/mm/yyyy",
     todayHighlight: true,
     autoclose: true,
   });
@@ -121,6 +126,9 @@ $(document).ready(async function () {
         break;
       case "Resumen":
         $("#totalGastosResumen").removeClass("d-none");
+        break;
+      case "Editar":
+        $("#editarGastos").removeClass("d-none");
         break;
     }
   });
@@ -175,6 +183,7 @@ const getGastosPorCategorias = async (categorias) => {
   // Mostrar los gastos en la pantalla
   mostrarGastosPantalla(resultTotalesPorCategoria);
   mostrarResumenGastosPantalla(resultTotalesPorCategoria);
+  mostrarEditarGastosPantalla(resultFiltroPorFecha);
 
   // Actualizar indicador principal OTROS GASTOS
   let categoriaOtrosGastos = resultTotalesPorCategoria.filter(
@@ -209,6 +218,9 @@ const mostrarGastosPantalla = (datos) => {
   $("#totalGastosPorCategoria").empty();
   $("#totalGastosPorCategoria").html(html);
 };
+// **************************************
+// MOSTRAR RESUMEN GASTOS EN PANTALLA
+// **************************************
 const mostrarResumenGastosPantalla = (datos) => {
   let html = ``;
   let diferencia = 0;
@@ -237,6 +249,46 @@ const mostrarResumenGastosPantalla = (datos) => {
   $("#total_real").html(totalReal);
   $("#total_plan").html(totalPLan);
   $("#total_diferencia").html((totalPLan - totalReal).toFixed(2));
+};
+// **************************************
+// MOSTRAR EDITAR GASTOS EN PANTALLA
+// **************************************
+const mostrarEditarGastosPantalla = (datos) => {
+  let html = ``;
+  let diferencia = 0;
+
+  let totalReal = 0;
+  let totalPLan = 0;
+
+  datos.map((elem) => {
+    diferencia = parseFloat(elem.totalPlan) - parseFloat(elem.totalReal);
+    html += `
+          <tr>
+            <td>${elem.datos_fecha.fecha + " " + elem.datos_fecha.hora}</td>
+            <td class="descripcio_gasto">
+              <span class="table_categoria" >${elem.categoria}</span>
+              <span class="table_subcategoria" >${elem.subcategoria}</span>
+              <span class="table_descripcion" >${elem.descripcion}</span>
+            </td>
+            <td>${elem.monto}</td>
+            <td>
+              <button id="${
+                elem._id
+              }" class="icon-button editar_eliminar_registro">
+                <svg class="icon_trush_svg" viewBox="0 0 24 24">
+                  <path d="M9 3V4H4V6H5V19C5 20.1 5.9 21 7 21H17C18.1 21 19 20.1 19 19V6H20V4H15V3H9M7 6H17V19H7V6M9 8V17H11V8H9M13 8V17H15V8H13Z" />
+                </svg>
+              </button>
+            </td>
+          </tr>
+        `;
+
+    totalReal += elem.totalReal;
+    totalPLan += elem.totalPlan;
+  });
+
+  $("#detalleTablaEditar").empty();
+  $("#detalleTablaEditar").html(html);
 };
 // **************************************
 // OBTENER GASTOS TOTALES POR CATEGORIA
@@ -287,19 +339,26 @@ const filtradoPorFecha = (datos, fecha_inicio, fecha_fin) => {
   // parsear entero las fecha para rangos
 
   let fechaInicioInt = parseInt(
-    fecha_inicio.toISOString().split("T")[0].replace("-", "")
+    fecha_inicio.toISOString().split("T")[0].replaceAll("-", "")
   );
   let fechaFinInt = parseInt(
-    fecha_fin.toISOString().split("T")[0].replace("-", "")
+    fecha_fin.toISOString().split("T")[0].replaceAll("-", "")
   );
 
   datos.map((elem) => {
-    let fechaGastoInt = parseInt(elem.fecha_compra.replace("-", ""));
+    let fechaRegistro = elem.datos_fecha.fecha.replaceAll("-", "");
+    let horaRegistro = elem.datos_fecha.hora.replaceAll(":", "");
+    let fechaHoraRegistro = parseInt(fechaRegistro + horaRegistro);
 
+    let fechaGastoInt = parseInt(elem.fecha_compra.replaceAll("-", ""));
     if (fechaGastoInt >= fechaInicioInt && fechaGastoInt <= fechaFinInt) {
+      elem.fecha_hora_registro = fechaHoraRegistro;
       result.push(elem);
     }
   });
+
+  result.sort((a, b) => b.fecha_hora_registro - a.fecha_hora_registro);
+
   return result;
 };
 
@@ -389,9 +448,9 @@ $("#guardar_gasto").on("click", async () => {
   let fecha_compra =
     fechaCompraNoFormat.substr(6) +
     "-" +
-    fechaCompraNoFormat.substr(0, 2) +
+    fechaCompraNoFormat.substr(3, 2) +
     "-" +
-    fechaCompraNoFormat.substr(3, 2);
+    fechaCompraNoFormat.substr(0, 2);
 
   //ARMAR DATA
   var gasto = {
@@ -404,23 +463,74 @@ $("#guardar_gasto").on("click", async () => {
     fecha_compra,
   };
 
-  //LIMPIAR CAMPOS
-  $("#monto_gasto").val("");
-  $("#listarCategorias").val("");
-  $("#listarSubcategorias").val("");
-  $("#desc_gasto").val("");
   //$("#fecha_compra").val("");
 
   //ENVIAR AL SERVIDOR
   var jsonData = JSON.stringify(gasto, null, 2);
   var urlsave = urlsaveapi;
   var responseSave = await guardarDatos(urlsave, jsonData);
-  if (responseSave == "Gasto guardado correctamente.") {
+
+  if (responseSave == "DATA_INCOMPLETE") {
+    mostrarMensaje("Datos incompletos", 0);
+  } else if (responseSave == "SUCCESS") {
     await actualizarGastoMensual(ingreso);
     await getGastosPorCategorias(categorias);
+    //LIMPIAR CAMPOS
+    limpiarCampos();
+    mostrarMensaje("Guardado", 1);
+  } else if (responseSave == "ERROR") {
+    mostrarMensaje("Error", 2);
   }
 });
-
+// **************************************
+// MOSTRAR MENSAJE DE CONFIRMACION
+// **************************************
+const mostrarMensaje = (msg, msg_num) => {
+  $("#response_save").text(msg);
+  if (msg_num == 0) {
+    $("#response_save")
+      .removeClass("success error incomplete")
+      .addClass("incomplete");
+    $("#response_save")
+      .stop(true, true) // Evita que las animaciones se acumulen
+      .fadeIn(1000, function () {
+        $(this).removeClass("d-none");
+      }) // Aparece suavemente en 1s
+      .delay(1000) // Se mantiene visible por 1s
+      .fadeOut(1000, function () {
+        $(this).addClass("d-none");
+      }); // Desaparece suavemente en 1s
+  } else if (msg_num == 1) {
+    $("#response_save")
+      .removeClass("success error incomplete")
+      .addClass("success");
+    $("#response_save")
+      .removeClass("d-none")
+      .fadeOut(1000)
+      .fadeIn(1000, function () {
+        $(this).addClass("d-none");
+      });
+  } else if (msg_num == 2) {
+    $("#response_save")
+      .removeClass("success error incomplete")
+      .addClass("error");
+    $("#response_save")
+      .removeClass("d-none")
+      .fadeOut(1000)
+      .fadeIn(1000, function () {
+        $(this).addClass("d-none");
+      });
+  }
+};
+// **************************************
+// LIMPIAR CAMPOS DEL GUARDADO
+// **************************************
+const limpiarCampos = () => {
+  $("#monto_gasto").val("");
+  $("#listarCategorias").val("");
+  $("#listarSubcategorias").val("");
+  $("#desc_gasto").val("");
+};
 // **************************************
 // GENERAR ID
 // **************************************
@@ -575,5 +685,66 @@ const getAnioMesAnalisis = () => {
     $("#anio_analisis").val(anio);
   } else {
     $("#anio_analisis").val(anio_analisis);
+  }
+};
+
+// **************************************
+// ACTUALIZAR FECHA COMPRA
+// **************************************
+$("#agregarGasto").on("click", () => {
+  reiniciarFechaCompra();
+});
+
+const reiniciarFechaCompra = () => {
+  // OBTENER FECHA ACTUAL DE SISTEMA
+  let fechaActual = new Date();
+  let dia = ("0" + fechaActual.getDate()).slice(-2);
+  let mes = ("0" + (fechaActual.getMonth() + 1)).slice(-2);
+  let anio = fechaActual.getFullYear();
+
+  // => Formatear la fecha en formato mm/dd/yyyy
+  let fechaFormateada = dia + "/" + mes + "/" + anio;
+  $("#datepicker").datepicker({
+    format: "dd/mm/yyyy",
+    todayHighlight: true,
+    autoclose: true,
+  });
+
+  // => Establecer la fecha actual por defecto en el campo de entrada
+  $("#fecha_compra").val(fechaFormateada);
+};
+
+$(document).on("click", ".editar_eliminar_registro", function () {
+  $("#eliminarGasto").modal("show");
+  registroPorEliminado = this.id;
+});
+$("#eliminar_gasto").on("click", async () => {
+  await eliminarRegistro(registroPorEliminado);
+});
+
+const eliminarRegistro = async (id) => {
+  //ARMAR DATA
+  var gasto = {
+    id: id,
+  };
+
+  //ENVIAR AL SERVIDOR
+  var jsonData = JSON.stringify(gasto, null, 2);
+  let urldelete = urldeleteapi;
+  var responseDelete = await eliminarDato(urldelete, jsonData);
+
+  if (responseDelete == "SUCCESS") {
+    // OBTENER GASTOS POR CATEGORIAS
+    await getGastosPorCategorias(categorias);
+    //OBTENER GASTO MENSUAL
+    await actualizarGastoMensual(ingreso);
+    $("#eliminarGasto").modal("hide");
+    alert("Registro eliminado");
+  } else if (responseDelete == "NOT_FOUND") {
+    $("#eliminarGasto").modal("hide");
+    alert("No se encontró el registro");
+  } else if (responseDelete == "ERROR") {
+    $("#eliminarGasto").modal("hide");
+    alert("Error al eliminar registro");
   }
 };

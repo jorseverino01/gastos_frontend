@@ -203,8 +203,38 @@ text {
 .btn_menu.activo {
     color: #2861CA;
 }
+#response_save {
+    /* display: none; Oculta el mensaje al inicio correctamente */
+    font-weight: 700;
+    font-size: 15px;
+    transition: all opacity 1s ease-in-out;
+}
+.success {
+    color: green;
+}
+.error {
+    color: red;
+}
+.incomplete {
+    color: #ffaa00;
+}
 
-
+.table_categoria, 
+.table_subcategoria, 
+.table_descripcion {
+    font-size: 12px;
+}
+.table_subcategoria, 
+.table_descripcion {
+    font-size: 13px;
+}
+.table_categoria, 
+.table_subcategoria {
+    font-weight: 600;
+}
+td.descripcio_gasto span {
+    display: block;
+}
 
 /* PROGRESS BAR */
 
@@ -290,4 +320,27 @@ progress::-webkit-progress-value {
     margin-top: 100px;
     padding: 10px;
     padding-top: 20px;
+}
+/* icono de tacho de basura */
+.icon-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 5px;
+    cursor: pointer;
+}
+
+.icon-button:hover {
+    background-color: #0056b3;
+}
+
+.icon-button .icon_trush_svg {
+    width: 15px;
+    height: 15px;
+    fill: white;
+    margin-right: 5px;
 }
