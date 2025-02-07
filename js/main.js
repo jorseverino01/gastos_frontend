@@ -65,7 +65,7 @@ var categorias = {
 };
 var urlget = "https://desarrolladorweb.site/api-gastos/";
 var urlsaveapi = "https://desarrolladorweb.site/api-gastos/new_entry";
-var urlsaveapi = "https://desarrolladorweb.site/api-gastos/delete_id";
+var urldeleteapi = "https://desarrolladorweb.site/api-gastos/delete_id";
 // var urlget = "http://localhost:5000";
 // var urlsaveapi = "http://localhost:5000/new_entry";
 // var urldeleteapi = "http://localhost:5000/delete_id";
