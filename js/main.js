@@ -189,7 +189,7 @@ const getGastosPorCategorias = async (categorias) => {
   let categoriaOtrosGastos = resultTotalesPorCategoria.filter(
     (elem) => elem.categoria === "otros_gastos"
   );
-  $("#otroGasto").text(categoriaOtrosGastos[0].totalReal);
+  $("#otroGasto").text(categoriaOtrosGastos[0].totalReal.toFixed(2));
 };
 
 // **************************************
@@ -377,9 +377,9 @@ const actualizarGastoMensual = async (ingreso) => {
     rango.fin
   );
   // Actualización del gasto mensual
-  $("#gastoMensual").text(total.total);
+  $("#gastoMensual").text(total.total.toFixed(2));
   // Actualización del Ahorro Mensual
-  $("#ahorroMensual").text(ingreso - total.total);
+  $("#ahorroMensual").text((ingreso - total.total).toFixed(2));
 };
 
 // **************************************
