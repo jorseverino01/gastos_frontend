@@ -168,6 +168,7 @@ $(document).ready(async function () {
   await actualizarGastoMensual(ingreso);
 
   //pruebas();
+  // ACTUALIZAR LA TABLA DE REAL VS PLAN (En base a GASTOS_POR_CATEGORIA)
   crear_tabla_real_vs_Plan();
 
   //MOSTRAR LOS GASTOS PLAN DEL gastos_plan.js
@@ -240,6 +241,12 @@ const getGastosPorCategorias = async (categorias) => {
     (elem) => elem.categoria === "otros_gastos"
   );
   $("#otroGasto").text(categoriaOtrosGastos[0].totalReal.toFixed(2));
+
+  // ACTUALIZAR LA TABLA DE REAL VS PLAN (En base a GASTOS_POR_CATEGORIA)
+  crear_tabla_real_vs_Plan();
+
+  //MOSTRAR LOS GASTOS PLAN DEL gastos_plan.js
+  await mostrarGastosPlan();
 };
 
 // **************************************
