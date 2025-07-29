@@ -65,6 +65,7 @@ const limpiarCamposModalPlan = () => {
 const mostrarGastosPlan = async () => {
   let gastos_planificados = gastos_plan;
 
+  debugger;
   let GASTOS_REAL_VS_PLAN = JSON.parse(
     localStorage.getItem("GASTOS_REAL_VS_PLAN")
   );

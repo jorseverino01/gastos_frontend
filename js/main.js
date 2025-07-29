@@ -167,14 +167,14 @@ $(document).ready(async function () {
   //OBTENER GASTO MENSUAL
   await actualizarGastoMensual(ingreso);
 
+  //pruebas();
+  crear_tabla_real_vs_Plan();
+
   //MOSTRAR LOS GASTOS PLAN DEL gastos_plan.js
   await mostrarGastosPlan();
 
   // DETECTAR VALOR EN ANIO Y MES DE ANALISIS
   getAnioMesAnalisis();
-
-  //pruebas();
-  crear_tabla_real_vs_Plan();
 });
 
 $("#guardar_gasto_plan").on("click", async () => {
