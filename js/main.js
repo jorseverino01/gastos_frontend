@@ -45,6 +45,9 @@ var categorias = {
       "dog_show",
       "leche",
       "papel_higienico",
+      "huevos",
+      "azucar",
+      "arroz",
     ],
   },
   servicios: {
@@ -70,7 +73,7 @@ var urldeleteapi = "https://desarrolladorweb.site/api-gastos/delete_id";
 // var urlsaveapi = "http://localhost:5000/new_entry";
 // var urldeleteapi = "http://localhost:5000/delete_id";
 
-var ingreso = 4500;
+var ingreso = 1200;
 var registroPorEliminado = "";
 
 $(document).ready(async function () {
@@ -87,9 +90,14 @@ $(document).ready(async function () {
     todayHighlight: true,
     autoclose: true,
   });
-
+  $("#datepicker2").datepicker({
+    format: "dd/mm/yyyy",
+    todayHighlight: true,
+    autoclose: true,
+  });
   // => Establecer la fecha actual por defecto en el campo de entrada
   $("#fecha_compra").val(fechaFormateada);
+  $("#fecha_compra_plan").val(fechaFormateada);
 
   // LISTAR CATEGORIAS
   let resultCategorias = await mostrarCategorias(categorias);
@@ -130,6 +138,9 @@ $(document).ready(async function () {
       case "Editar":
         $("#editarGastos").removeClass("d-none");
         break;
+      case "Plan mes":
+        $("#planMensual").removeClass("d-none");
+        break;
     }
   });
 
@@ -156,8 +167,41 @@ $(document).ready(async function () {
   //OBTENER GASTO MENSUAL
   await actualizarGastoMensual(ingreso);
 
+  //MOSTRAR LOS GASTOS PLAN DEL gastos_plan.js
+  await mostrarGastosPlan();
+
   // DETECTAR VALOR EN ANIO Y MES DE ANALISIS
   getAnioMesAnalisis();
+
+  //pruebas();
+  crear_tabla_real_vs_Plan();
+});
+
+$("#guardar_gasto_plan").on("click", async () => {
+  //OBTENER DATOS DE ALMACENAMIENTO
+  const spending_data = getDataStorage();
+  //Guardar datos en mongoDB y actualizar datos en pantalla
+  const VI_guardarDatosPlan = await guardarDatosPlan(spending_data);
+});
+
+// **************************************
+// OBTENER GASTOS POR CATEGORIA
+// **************************************
+$(".btn_plan_gasto").on("click", function () {
+  //Obtener y almacenar el ID_PRODUCTO en una variable localtorage
+  const gastoID = $(this).data("gasto");
+  localStorage.setItem("ID_PRODUCTO", JSON.stringify(gastoID));
+
+  //Obtener atributos del id_producto seleccionado con Agregar
+  const arrayGasto = Object.values(gastos_plan).find((g) => g.id === gastoID);
+
+  //Asignar valores obtenidos en el MODAL de guardar gasto plan
+  $("#categoria_gasto").text(arrayGasto.nombre);
+  $("#subcategoria_gasto").text(arrayGasto.nombre);
+  if (arrayGasto.cantidad_plan == "NA") {
+    $("#cantidad_gasto_plan").addClass("d-none");
+  }
+  $("#monto_gasto_plan").val(arrayGasto.precio_relativo);
 });
 
 // **************************************
@@ -173,6 +217,12 @@ const getGastosPorCategorias = async (categorias) => {
     JSON.parse(response),
     rango.inicio,
     rango.fin
+  );
+
+  //Guardar gastos reales realizados dentro del mes actual, en localstorage
+  localStorage.setItem(
+    "GASTOS_POR_CATEGORIA",
+    JSON.stringify(resultFiltroPorFecha)
   );
 
   let resultTotalesPorCategoria = getTotalesPorCategoria(
@@ -406,9 +456,9 @@ const mostrarCategorias = async (caterogias) => {
 // OBTENER GASTOS SEMANAL
 // **************************************
 const obetenerGastoSemanal = (data, fecha_inicio, fecha_fin) => {
-  var total = 0;
-  var gasto_semanal_extra = 0;
-  var gasto_semanal_planificado = 0;
+  let total = 0;
+  let gasto_semanal_extra = 0;
+  let gasto_semanal_planificado = 0;
 
   total = data.reduce((acumulador, elem) => {
     var formatofecha = new Date(
@@ -435,7 +485,7 @@ const obetenerGastoSemanal = (data, fecha_inicio, fecha_fin) => {
 // GUARDAR DATOS MONGO ATLAS
 // **************************************
 $("#guardar_gasto").on("click", async () => {
-  let ingreso = 4500;
+  let ingreso = 1200;
   //OBETENER DATOS INGRESADOS
   var monto = $("#monto_gasto").val();
   var categoria = $("#listarCategorias").val();
@@ -668,9 +718,6 @@ const getAnioMesAnalisis = () => {
   let dia = ("0" + fechaActual.getDate()).slice(-2);
   let mes = ("0" + (fechaActual.getMonth() + 1)).slice(-2);
   let anio = "" + fechaActual.getFullYear();
-
-  console.log(mes);
-  console.log(anio);
 
   let mes_analisis = localStorage.getItem("mes_analisis");
   let anio_analisis = localStorage.getItem("anio_analisis");

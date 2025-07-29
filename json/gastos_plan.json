@@ -1,0 +1,211 @@
+{
+  "1": {
+    "ID": "PASAJE_VALDI",
+    "descripcion": "Pasaje Valdiviezo",
+    "unidad": "u",
+    "precio_relativo": 1,
+    "precio_plan_mensual": 32,
+    "mejor_lugar_compra": "NA",
+    "duracion_estimada": "1 Dia",
+    "tipo_gasto": "servicio",
+    "cantidad_plan": "NA"
+  },
+  "2": {
+    "ID": "PASAJE_SEIDOR",
+    "descripcion": "Pasaje Seidor",
+    "unidad": "u",
+    "precio_relativo": 15,
+    "precio_plan_mensual": 50.5,
+    "mejor_lugar_compra": "NA",
+    "duracion_estimada": "1 Dia",
+    "tipo_gasto": "servicio",
+    "cantidad_plan": "NA"
+  },
+  "3": {
+    "ID": "CAFE",
+    "descripcion": "Café",
+    "unidad": "u",
+    "precio_relativo": 10.5,
+    "precio_plan_mensual": 42,
+    "mejor_lugar_compra": "Tienda frentea al condominio",
+    "duracion_estimada": "2 semanas por bolsa",
+    "tipo_gasto": "semanal",
+    "cantidad_plan": 4
+  },
+  "4": {
+    "ID": "AZUCAR",
+    "nombre": "Azucar",
+    "unidad": "Kg",
+    "precio_relativo": 4,
+    "precio_plan_mensual": 8,
+    "mejor_lugar_compra": "Tienda frentea al condominio",
+    "duracion_estimada": "2 semanas por Kilo",
+    "tipo_gasto": "semanal",
+    "cantidad_plan": 2
+  },
+  "5": {
+    "ID": "HIGADO",
+    "nombre": "Higado",
+    "unidad": "Kg",
+    "precio_relativo": 6.5,
+    "precio_plan_mensual": 39,
+    "mejor_lugar_compra": "Mercado valdiviezo",
+    "duracion_estimada": "1 semana por 1 kilo",
+    "tipo_gasto": "semanal",
+    "cantidad_plan": 6
+  },
+  "6": {
+    "ID": "HUEVO",
+    "nombre": "Huevos",
+    "unidad": "Kg",
+    "precio_relativo": 1,
+    "precio_plan_mensual": 48,
+    "mejor_lugar_compra": "Mercado valdiviezo",
+    "duracion_estimada": "1 semana por 2kg",
+    "tipo_gasto": "semanal",
+    "cantidad_plan": 6
+  },
+  "7": {
+    "ID": "SHAMPOO",
+    "nombre": "Shampoo",
+    "unidad": "u",
+    "precio_relativo": 17.5,
+    "precio_plan_mensual": 17.5,
+    "mejor_lugar_compra": "Minimarket valdiviezo",
+    "duracion_estimada": "2 Meses por botella",
+    "tipo_gasto": "semanal",
+    "cantidad_plan": 1
+  },
+  "8": {
+    "ID": "COLINOS",
+    "nombre": "Colinos",
+    "unidad": "u",
+    "precio_relativo": 18.75,
+    "precio_plan_mensual": 18.75,
+    "mejor_lugar_compra": "Tottus",
+    "duracion_estimada": "1 Mes por pack de 2",
+    "tipo_gasto": "semanal",
+    "cantidad_plan": 1
+  },
+  "9": {
+    "ID": "PAPEL_HIGIENICO",
+    "nombre": "Papel Higiénico",
+    "unidad": "u",
+    "precio_relativo": 44.9,
+    "precio_plan_mensual": 44.9,
+    "mejor_lugar_compra": "Maestro",
+    "duracion_estimada": "2 Meses por Bolsa (16 unidades)",
+    "tipo_gasto": "semanal",
+    "cantidad_plan": 1
+  },
+  "10": {
+    "ID": "LEJIA",
+    "nombre": "Lejía",
+    "unidad": "u",
+    "precio_relativo": 10.9,
+    "precio_plan_mensual": 10.9,
+    "mejor_lugar_compra": "Tottus",
+    "duracion_estimada": "1 Mes por botella 5 Litros",
+    "tipo_gasto": "semanal",
+    "cantidad_plan": 1
+  },
+  "11": {
+    "ID": "ENJUAGUE_BUCAL",
+    "nombre": "Enjuague bucal",
+    "unidad": "u",
+    "precio_relativo": 23.9,
+    "precio_plan_mensual": 23.9,
+    "mejor_lugar_compra": "Tottus",
+    "duracion_estimada": "1 Mes por botella 500 ml",
+    "tipo_gasto": "semanal",
+    "cantidad_plan": 1
+  },
+  "12": {
+    "ID": "DETERGENTE",
+    "nombre": "Detergente",
+    "unidad": "u",
+    "precio_relativo": 40.6,
+    "precio_plan_mensual": 40.6,
+    "mejor_lugar_compra": "Tottus",
+    "duracion_estimada": "2 Mes por 4kg Opal",
+    "tipo_gasto": "semanal",
+    "cantidad_plan": 1
+  },
+  "13": {
+    "ID": "ALMUERZO",
+    "nombre": "Almuerzo",
+    "unidad": "u",
+    "precio_relativo": 12,
+    "precio_plan_mensual": 360,
+    "mejor_lugar_compra": "Casa mamá",
+    "duracion_estimada": "Mensual",
+    "tipo_gasto": "servicio",
+    "cantidad_plan": 30
+  },
+  "14": {
+    "ID": "LUZ",
+    "nombre": "Luz del sur",
+    "unidad": "u",
+    "precio_relativo": 80,
+    "precio_plan_mensual": 80,
+    "mejor_lugar_compra": "Casa mamá",
+    "duracion_estimada": "Mensual",
+    "tipo_gasto": "servicio",
+    "cantidad_plan": 1
+  },
+  "15": {
+    "ID": "INTERNET",
+    "nombre": "Internet claro",
+    "unidad": "u",
+    "precio_relativo": 99,
+    "precio_plan_mensual": 99,
+    "mejor_lugar_compra": "Casa mamá",
+    "duracion_estimada": "Mensual",
+    "tipo_gasto": "servicio",
+    "cantidad_plan": 1
+  },
+  "16": {
+    "ID": "MANTENIMIENTO",
+    "nombre": "Mantenimiento",
+    "unidad": "u",
+    "precio_relativo": 141,
+    "precio_plan_mensual": 141,
+    "mejor_lugar_compra": "Casa",
+    "duracion_estimada": "Mensual",
+    "tipo_gasto": "servicio",
+    "cantidad_plan": 1
+  },
+  "17": {
+    "ID": "PLAN_CELULAR",
+    "nombre": "Plan celular",
+    "unidad": "u",
+    "precio_relativo": 45,
+    "precio_plan_mensual": 45,
+    "mejor_lugar_compra": "Casa",
+    "duracion_estimada": "Mensual",
+    "tipo_gasto": "servicio",
+    "cantidad_plan": 1
+  },
+  "18": {
+    "ID": "GAS",
+    "nombre": "Gas calidda",
+    "unidad": "u",
+    "precio_relativo": 13.8,
+    "precio_plan_mensual": 13.8,
+    "mejor_lugar_compra": "Casa",
+    "duracion_estimada": "Mensual",
+    "tipo_gasto": "servicio",
+    "cantidad_plan": 1
+  },
+  "19": {
+    "ID": "OTROS",
+    "nombre": "Otros",
+    "unidad": "u",
+    "precio_relativo": 0,
+    "precio_plan_mensual": 0,
+    "mejor_lugar_compra": "",
+    "duracion_estimada": "",
+    "tipo_gasto": "extra",
+    "cantidad_plan": 1
+  }
+}
