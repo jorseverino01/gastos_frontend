@@ -68,7 +68,6 @@ const mostrarGastosPlan = async () => {
   let GASTOS_REAL_VS_PLAN = JSON.parse(
     localStorage.getItem("GASTOS_REAL_VS_PLAN")
   );
-  console.log(GASTOS_REAL_VS_PLAN);
 
   let html = ``;
 
@@ -152,7 +151,7 @@ const pruebas = () => {
     if (gasto.categoria === "otros_gastos" && gasto.planificado === "X") {
       otros_gastos += gasto.precio_plan_mensual;
       console.log(
-        "OTROS GASTOS:  ",
+        "SUBCATEGORIAS:  ",
         gasto.subcategoria,
         ":  ",
         gasto.precio_plan_mensual
@@ -172,12 +171,16 @@ const pruebas = () => {
       almuerzo += gasto.precio_plan_mensual;
     }
   });
+
+  let ingreso_total = 4200;
+  let departamento = 1750;
   console.log("TOTAL:  ", total);
+  console.log("AHORRO:  ", ingreso_total - (total + departamento));
   console.log("OTROS GASTOS:  ", otros_gastos);
-  console.log("SERVICIOS:  ", servicios);
-  console.log("ABARROTES:  ", abarrotes);
-  console.log("PERROS:  ", perros);
-  console.log("ALMUERZO:  ", almuerzo);
+  // console.log("SERVICIOS:  ", servicios);
+  // console.log("ABARROTES:  ", abarrotes);
+  // console.log("PERROS:  ", perros);
+  // console.log("ALMUERZO:  ", almuerzo);
 };
 
 const crear_tabla_real_vs_Plan = () => {

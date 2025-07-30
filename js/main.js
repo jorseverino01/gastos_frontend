@@ -41,19 +41,27 @@ var categorias = {
       "glicerina",
       "pañitos_humedos",
       "shampoo",
-      "acondicionador",
+      "Acondicionador",
       "dog_show",
       "leche",
       "papel_higienico",
       "huevos",
       "azucar",
       "arroz",
+      "Aceite",
     ],
   },
   servicios: {
     total: 347,
     precio_unitario: 347,
-    elementos: ["internet", "celular", "mantenimiento", "gas", "luz_sur"],
+    elementos: [
+      "internet",
+      "celular",
+      "mantenimiento",
+      "gas",
+      "luz_sur",
+      "hbogo",
+    ],
   },
   departamento: {
     total: 1750,
@@ -167,7 +175,7 @@ $(document).ready(async function () {
   //OBTENER GASTO MENSUAL
   await actualizarGastoMensual(ingreso);
 
-  //pruebas();
+  pruebas();
   // ACTUALIZAR LA TABLA DE REAL VS PLAN (En base a GASTOS_POR_CATEGORIA)
   crear_tabla_real_vs_Plan();
 
@@ -498,6 +506,9 @@ $("#guardar_gasto").on("click", async () => {
   var categoria = $("#listarCategorias").val();
   var subcategoria = $("#listarSubcategorias").val();
   var descripcion = $("#desc_gasto").val();
+  if (descripcion.trim() === "") {
+    descripcion = "SD";
+  }
   let id_gasto = generateRandomID();
   let datos_fecha = obtenerDatosFecha();
   //   let tipo_gasto = $('input[name="grupoTipoGasto"]:checked').val();
