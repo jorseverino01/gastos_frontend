@@ -14,11 +14,6 @@ var categorias = {
     precio_unitario: 20,
     elementos: ["papaya", "mango", "platano", "otros"],
   },
-  dog_show: {
-    total: 91,
-    precio_unitario: 91,
-    elementos: [],
-  },
   higado: {
     total: 28,
     precio_unitario: 7,
@@ -72,6 +67,11 @@ var categorias = {
     total: 400,
     precio_unitario: 400,
     elementos: ["pasajes", "dulces", "ropa", "comida_calle", "otros_gastos"],
+  },
+  perros: {
+    total: 400,
+    precio_unitario: 400,
+    elementos: ["arroz", "pates", "pollo", "dogshow"],
   },
 };
 var urlget = "https://desarrolladorweb.site/api-gastos/";
@@ -177,7 +177,7 @@ $(document).ready(async function () {
 
   pruebas();
   // ACTUALIZAR LA TABLA DE REAL VS PLAN (En base a GASTOS_POR_CATEGORIA)
-  crear_tabla_real_vs_Plan();
+  await crear_tabla_real_vs_Plan();
 
   //MOSTRAR LOS GASTOS PLAN DEL gastos_plan.js
   await mostrarGastosPlan();
@@ -229,10 +229,13 @@ const getGastosPorCategorias = async (categorias) => {
   );
 
   //Guardar gastos reales realizados dentro del mes actual, en localstorage
+  localStorage.removeItem("GASTOS_POR_CATEGORIA");
   localStorage.setItem(
     "GASTOS_POR_CATEGORIA",
     JSON.stringify(resultFiltroPorFecha)
   );
+
+  console.log("GASTOS GUARDADOS: ", resultFiltroPorFecha);
 
   let resultTotalesPorCategoria = getTotalesPorCategoria(
     categorias,
@@ -251,7 +254,7 @@ const getGastosPorCategorias = async (categorias) => {
   $("#otroGasto").text(categoriaOtrosGastos[0].totalReal.toFixed(2));
 
   // ACTUALIZAR LA TABLA DE REAL VS PLAN (En base a GASTOS_POR_CATEGORIA)
-  crear_tabla_real_vs_Plan();
+  await crear_tabla_real_vs_Plan();
 
   //MOSTRAR LOS GASTOS PLAN DEL gastos_plan.js
   await mostrarGastosPlan();
@@ -329,7 +332,7 @@ const mostrarEditarGastosPantalla = (datos) => {
     diferencia = parseFloat(elem.totalPlan) - parseFloat(elem.totalReal);
     html += `
           <tr>
-            <td>${elem.datos_fecha.fecha + " " + elem.datos_fecha.hora}</td>
+            <td>${elem.fecha_compra + " " + elem.datos_fecha.hora}</td>
             <td class="descripcio_gasto">
               <span class="table_categoria" >${elem.categoria}</span>
               <span class="table_subcategoria" >${elem.subcategoria}</span>
@@ -403,19 +406,26 @@ const filtradoPorFecha = (datos, fecha_inicio, fecha_fin) => {
   let result = [];
   // parsear entero las fecha para rangos
 
-  let fechaInicioInt = parseInt(
-    fecha_inicio.toISOString().split("T")[0].replaceAll("-", "")
-  );
-  let fechaFinInt = parseInt(
-    fecha_fin.toISOString().split("T")[0].replaceAll("-", "")
-  );
+  const yyyy_ini = fecha_inicio.getFullYear();
+  const mm_ini = String(fecha_inicio.getMonth() + 1).padStart(2, "0"); // +1 porque getMonth() es 0-indexed
+  const dd_ini = String(fecha_inicio.getDate()).padStart(2, "0");
+
+  const fechaInicioInt = parseInt(`${yyyy_ini}${mm_ini}${dd_ini}`);
+
+  const yyyy_fin = fecha_fin.getFullYear();
+  const mm_fin = String(fecha_fin.getMonth() + 1).padStart(2, "0"); // +1 porque getMonth() es 0-indexed
+  const dd_fin = String(fecha_fin.getDate()).padStart(2, "0");
+
+  const fechaFinInt = parseInt(`${yyyy_fin}${mm_fin}${dd_fin}`);
 
   datos.map((elem) => {
-    let fechaRegistro = elem.datos_fecha.fecha.replaceAll("-", "");
+    //let fechaRegistro = elem.datos_fecha.fecha.replaceAll("-", "");
+    let fechaRegistro = elem.fecha_compra.replaceAll("-", "");
     let horaRegistro = elem.datos_fecha.hora.replaceAll(":", "");
     let fechaHoraRegistro = parseInt(fechaRegistro + horaRegistro);
 
     let fechaGastoInt = parseInt(elem.fecha_compra.replaceAll("-", ""));
+
     if (fechaGastoInt >= fechaInicioInt && fechaGastoInt <= fechaFinInt) {
       elem.fecha_hora_registro = fechaHoraRegistro;
       result.push(elem);
@@ -728,6 +738,12 @@ $("#buscar_gastos").on("click", async () => {
 
   // DETECTAR VALOR EN ANIO Y MES DE ANALISIS
   getAnioMesAnalisis();
+
+  // ACTUALIZAR LA TABLA DE REAL VS PLAN (En base a GASTOS_POR_CATEGORIA)
+  await crear_tabla_real_vs_Plan();
+
+  //MOSTRAR LOS GASTOS PLAN DEL gastos_plan.js
+  await mostrarGastosPlan();
 });
 
 const getAnioMesAnalisis = () => {

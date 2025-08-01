@@ -370,7 +370,7 @@ const gastos_plan = {
     duracion_estimada: "Mensual",
     tipo_gasto: "servicio",
     cantidad_plan: 1,
-    img: "DGO.png",
+    img: "dgo.png",
     subcategoria: "hbogo",
     categoria: "servicios",
     planificado: "X",

@@ -73,6 +73,7 @@ const mostrarGastosPlan = async () => {
 
   //Obtener el gastos real realizado por ID de producto.
   let gastos_reales = JSON.parse(localStorage.getItem("GASTOS_POR_CATEGORIA"));
+  console.log("MOSTRAR GASTOS: ", gastos_reales);
 
   for (let i = 0; i < GASTOS_REAL_VS_PLAN.length; i++) {
     const gasto = GASTOS_REAL_VS_PLAN[i];
@@ -183,12 +184,15 @@ const pruebas = () => {
   // console.log("ALMUERZO:  ", almuerzo);
 };
 
-const crear_tabla_real_vs_Plan = () => {
+const crear_tabla_real_vs_Plan = async () => {
   //Obtenemos los valore en arrays de objetos (JSON) de los gastos totales del mes y los gastos planificados
   let GASTOS_X_CATEGORIA = JSON.parse(
     localStorage.getItem("GASTOS_POR_CATEGORIA")
   );
-  let GASTOS_PLANIFICADOS = Object.values(gastos_plan);
+  //let GASTOS_PLANIFICADOS = Object.values(gastos_plan);
+  let GASTOS_PLANIFICADOS = Object.values(gastos_plan).map((obj) => ({
+    ...obj,
+  }));
 
   // SUMARIZACION POR CATEGORIA:
   //------------------------------
@@ -231,24 +235,24 @@ const crear_tabla_real_vs_Plan = () => {
 
   for (let i = 0; i < GASTOS_PLANIFICADOS.length; i++) {
     // Obtenemos cada gasto_plan
-    const gasto_plan = GASTOS_PLANIFICADOS[i];
+    const gasto_planif = GASTOS_PLANIFICADOS[i];
 
     // Guardamos el index de la subcategoria "otros_gastos"
-    if (gasto_plan.subcategoria == "otros_gastos") {
+    if (gasto_planif.subcategoria == "otros_gastos") {
       i_otr_gst = i;
     }
 
     // Buscamos el gasto real de la subcategoria del plan
-    if (gasto_plan.subcategoria != "otros_gastos") {
+    if (gasto_planif.subcategoria != "otros_gastos") {
       let index_borrado_aux = 0;
       let index_borrado = -1;
 
       GASTOS_REALES_SUM_SUBCAT_TEMP.find((gasto) => {
         if (
-          gasto_plan.subcategoria.toUpperCase() ==
+          gasto_planif.subcategoria.toUpperCase() ==
           gasto.subcategoria.toUpperCase()
         ) {
-          gasto_plan["monto_total"] = parseFloat(gasto.monto_total);
+          gasto_planif["monto_total"] = parseFloat(gasto.monto_total);
           index_borrado = index_borrado_aux;
         }
         index_borrado_aux += 1;
@@ -259,7 +263,7 @@ const crear_tabla_real_vs_Plan = () => {
         GASTOS_REALES_SUM_SUBCAT_TEMP.splice(index_borrado, 1);
       }
 
-      GASTOS_PLANIFICADOS_TEMP.push(gasto_plan);
+      GASTOS_PLANIFICADOS_TEMP.push(gasto_planif);
     }
 
     // Si estamos en la ultima iteracion, agregamos el elemento de otros_gastos y la suma de todos los extras
@@ -278,6 +282,7 @@ const crear_tabla_real_vs_Plan = () => {
     }
   }
   // Almacenamos la tabla de reales vs plan en localstorage
+  localStorage.removeItem("GASTOS_REAL_VS_PLAN");
   localStorage.setItem(
     "GASTOS_REAL_VS_PLAN",
     JSON.stringify(GASTOS_PLANIFICADOS_TEMP)
