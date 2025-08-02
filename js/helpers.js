@@ -73,7 +73,7 @@ const mostrarGastosPlan = async () => {
 
   //Obtener el gastos real realizado por ID de producto.
   let gastos_reales = JSON.parse(localStorage.getItem("GASTOS_POR_CATEGORIA"));
-  console.log("MOSTRAR GASTOS: ", gastos_reales);
+  // console.log("MOSTRAR GASTOS: ", gastos_reales);
 
   for (let i = 0; i < GASTOS_REAL_VS_PLAN.length; i++) {
     const gasto = GASTOS_REAL_VS_PLAN[i];
@@ -151,13 +151,12 @@ const pruebas = () => {
     }
     if (gasto.categoria === "otros_gastos" && gasto.planificado === "X") {
       otros_gastos += gasto.precio_plan_mensual;
-      console.log(
-        "SUBCATEGORIAS:  ",
-        gasto.subcategoria,
-        ":  ",
-        gasto.precio_plan_mensual
-      );
-      //console.log("OTROS GASTOS:  ", gasto.nombre);
+      // console.log(
+      //   "SUBCATEGORIAS:  ",
+      //   gasto.subcategoria,
+      //   ":  ",
+      //   gasto.precio_plan_mensual
+      // );
     }
     if (gasto.categoria === "servicios" && gasto.planificado === "X") {
       servicios += gasto.precio_plan_mensual;
@@ -175,9 +174,9 @@ const pruebas = () => {
 
   let ingreso_total = 4200;
   let departamento = 1750;
-  console.log("TOTAL:  ", total);
-  console.log("AHORRO:  ", ingreso_total - (total + departamento));
-  console.log("OTROS GASTOS:  ", otros_gastos);
+  // console.log("TOTAL:  ", total);
+  // console.log("AHORRO:  ", ingreso_total - (total + departamento));
+  // console.log("OTROS GASTOS:  ", otros_gastos);
   // console.log("SERVICIOS:  ", servicios);
   // console.log("ABARROTES:  ", abarrotes);
   // console.log("PERROS:  ", perros);
@@ -232,55 +231,70 @@ const crear_tabla_real_vs_Plan = async () => {
   let gasto_real_plan_temp = {};
   let total_otros = 0;
   let i_otr_gst = 0;
+  let total_gastos_planificados = 0;
 
   for (let i = 0; i < GASTOS_PLANIFICADOS.length; i++) {
     // Obtenemos cada gasto_plan
     const gasto_planif = GASTOS_PLANIFICADOS[i];
 
-    // Guardamos el index de la subcategoria "otros_gastos"
-    if (gasto_planif.subcategoria == "otros_gastos") {
-      i_otr_gst = i;
-    }
+    if (gasto_planif.planificado == "X") {
+      // Realizamos la suamtoria de toda la planificacion de gastos
+      total_gastos_planificados += gasto_planif.precio_plan_mensual;
 
-    // Buscamos el gasto real de la subcategoria del plan
-    if (gasto_planif.subcategoria != "otros_gastos") {
-      let index_borrado_aux = 0;
-      let index_borrado = -1;
-
-      GASTOS_REALES_SUM_SUBCAT_TEMP.find((gasto) => {
-        if (
-          gasto_planif.subcategoria.toUpperCase() ==
-          gasto.subcategoria.toUpperCase()
-        ) {
-          gasto_planif["monto_total"] = parseFloat(gasto.monto_total);
-          index_borrado = index_borrado_aux;
-        }
-        index_borrado_aux += 1;
-      });
-
-      // Eliminamos el gasto, si se encontró en el array
-      if (index_borrado > -1) {
-        GASTOS_REALES_SUM_SUBCAT_TEMP.splice(index_borrado, 1);
+      // Guardamos el index de la subcategoria "otros_gastos"
+      if (gasto_planif.subcategoria == "otros_gastos") {
+        i_otr_gst = i;
       }
 
-      GASTOS_PLANIFICADOS_TEMP.push(gasto_planif);
-    }
+      // Buscamos el gasto real de la subcategoria del plan
+      if (gasto_planif.subcategoria != "otros_gastos") {
+        let index_borrado_aux = 0;
+        let index_borrado = -1;
 
-    // Si estamos en la ultima iteracion, agregamos el elemento de otros_gastos y la suma de todos los extras
-    // otros_gastos = otros_gastos + extras:
-    if (i == GASTOS_PLANIFICADOS.length - 1) {
-      const gasto_plan_otros = GASTOS_PLANIFICADOS[i_otr_gst];
-      const total_otros = GASTOS_REALES_SUM_SUBCAT_TEMP.reduce(
-        (acumulador, elem) => {
-          acumulador += parseFloat(elem.monto_total);
-          return acumulador;
-        },
-        0
-      );
-      gasto_plan_otros["monto_total"] = parseFloat(total_otros);
-      GASTOS_PLANIFICADOS_TEMP.push(gasto_plan_otros);
+        GASTOS_REALES_SUM_SUBCAT_TEMP.find((gasto) => {
+          if (
+            gasto_planif.subcategoria.toUpperCase() ==
+            gasto.subcategoria.toUpperCase()
+          ) {
+            gasto_planif["monto_total"] = parseFloat(gasto.monto_total);
+            index_borrado = index_borrado_aux;
+          }
+          index_borrado_aux += 1;
+        });
+
+        // Eliminamos el gasto, si se encontró en el array
+        if (index_borrado > -1) {
+          GASTOS_REALES_SUM_SUBCAT_TEMP.splice(index_borrado, 1);
+        }
+
+        GASTOS_PLANIFICADOS_TEMP.push(gasto_planif);
+      }
+
+      // Si estamos en la ultima iteracion, agregamos el elemento de otros_gastos y la suma de todos los extras
+      // otros_gastos = otros_gastos + extras:
+      if (i == GASTOS_PLANIFICADOS.length - 1) {
+        const gasto_plan_otros = GASTOS_PLANIFICADOS[i_otr_gst];
+        const total_otros = GASTOS_REALES_SUM_SUBCAT_TEMP.reduce(
+          (acumulador, elem) => {
+            acumulador += parseFloat(elem.monto_total);
+            return acumulador;
+          },
+          0
+        );
+        gasto_plan_otros["monto_total"] = parseFloat(total_otros);
+        GASTOS_PLANIFICADOS_TEMP.push(gasto_plan_otros);
+      }
     }
   }
+
+  // Mostrar el gasto total planificado del mes en el INDICADOR en pantalla
+  $("#otroGasto").text(total_gastos_planificados.toFixed(2));
+  let gasto_real =
+    total_gastos_planificados.toFixed(2) -
+    parseFloat($("#gastoMensual").text());
+
+  $("#ahorroMensual").text(gasto_real);
+
   // Almacenamos la tabla de reales vs plan en localstorage
   localStorage.removeItem("GASTOS_REAL_VS_PLAN");
   localStorage.setItem(

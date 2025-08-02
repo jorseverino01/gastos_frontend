@@ -81,7 +81,7 @@ var urldeleteapi = "https://desarrolladorweb.site/api-gastos/delete_id";
 // var urlsaveapi = "http://localhost:5000/new_entry";
 // var urldeleteapi = "http://localhost:5000/delete_id";
 
-var ingreso = 1200;
+var ingreso = 1500;
 var registroPorEliminado = "";
 
 $(document).ready(async function () {
@@ -251,7 +251,7 @@ const getGastosPorCategorias = async (categorias) => {
   let categoriaOtrosGastos = resultTotalesPorCategoria.filter(
     (elem) => elem.categoria === "otros_gastos"
   );
-  $("#otroGasto").text(categoriaOtrosGastos[0].totalReal.toFixed(2));
+  //$("#otroGasto").text(categoriaOtrosGastos[0].totalReal.toFixed(2));
 
   // ACTUALIZAR LA TABLA DE REAL VS PLAN (En base a GASTOS_POR_CATEGORIA)
   await crear_tabla_real_vs_Plan();
@@ -454,7 +454,7 @@ const actualizarGastoMensual = async (ingreso) => {
   // Actualización del gasto mensual
   $("#gastoMensual").text(total.total.toFixed(2));
   // Actualización del Ahorro Mensual
-  $("#ahorroMensual").text((ingreso - total.total).toFixed(2));
+  //$("#ahorroMensual").text((ingreso - total.total).toFixed(2));
 };
 
 // **************************************
